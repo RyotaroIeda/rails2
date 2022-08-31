@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_30_134206) do
+ActiveRecord::Schema.define(version: 2022_08_30_134616) do
 
   create_table "posts", force: :cascade do |t|
     t.string "name"
@@ -28,13 +28,12 @@ ActiveRecord::Schema.define(version: 2022_08_30_134206) do
 
   create_table "reservations", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "post_id", null: false
     t.date "start_date"
     t.date "end_date"
     t.integer "person"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_reservations_on_post_id"
+    t.integer "post_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -53,6 +52,5 @@ ActiveRecord::Schema.define(version: 2022_08_30_134206) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "reservations", "posts"
   add_foreign_key "reservations", "users"
 end

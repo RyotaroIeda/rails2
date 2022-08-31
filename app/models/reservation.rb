@@ -5,10 +5,4 @@ class Reservation < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :person, presence: true
-  validates :pretend_ago
-  
-  def pretend_ago
-    errors.add(:end_date, 'は開始日以降に設定してください') if end_date < start_date
-  end   
-   
 end
